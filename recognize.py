@@ -4,6 +4,7 @@
 import cv2
 import imutils
 import numpy as np
+#import rospy
 from sklearn.metrics import pairwise
 
 # globals
@@ -175,7 +176,7 @@ if __name__ == "__main__":
                 fingers2 = count(thresholded2, segmented2)
 
                 cv2.putText(clone, str(fingers), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                cv2.putText(clone, str(fingers2), (35, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(clone, str(fingers2), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                 # show thresholded images
                 cv2.imshow("Thresholded", thresholded)
