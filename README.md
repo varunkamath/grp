@@ -1,2 +1,4 @@
-# CSCI 5551
-## Gesture recognition and robot control project using ROS 2 and OpenCV
+## A CSCI 5551 Project
+### by Luke Friede, Jason Vivit, Varun Kamath
+
+Gesture recognition and robot control project using ROS 2 and OpenCV
