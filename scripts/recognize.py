@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+
 # Segment, recognize, and count fingers from a video feed
 
 # imports
 import cv2
 import imutils
 import numpy as np
-#import rospy
+import rospy
 from sklearn.metrics import pairwise
 
 # globals
