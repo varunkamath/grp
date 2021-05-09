@@ -1,3 +1,4 @@
+# gesture-recognition-project
 ## A CSCI 5551 Project
 #### by Luke Friede, Jason Vivit, Varun Kamath
 
