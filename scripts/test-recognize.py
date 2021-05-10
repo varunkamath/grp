@@ -1,4 +1,5 @@
-#------------------------------------------------------------
+#!/usr/bin/env python3
+# #------------------------------------------------------------
 # SEGMENT, RECOGNIZE and COUNT fingers from a video sequence
 #------------------------------------------------------------
 
@@ -12,7 +13,8 @@ import sys
 import rospy
 from geometry_msgs.msg import Point, Twist
 from controller.msg import gestures
-msg = gestures()
+import os
+#msg = gestures()
 # global variables
 bg = None
 
@@ -107,18 +109,20 @@ def count(thresholded, segmented):
         #     25% of the circumference of the circular ROI
         if ((cY + (cY * 0.25)) > (y + h)) and ((circumference * 0.25) > c.shape[0]):
             count += 1
+    
     return count
 
 #-----------------
 # MAIN FUNCTION
 #-----------------
 if __name__ == "__main__":
-    rospy.init_node('camera', anonymous=True)
-    pub = rospy.Publisher("/gestures", gestures, queue_size = 1)
-    rospy.spin()
-    msg.fingers = 3
-    pub.publish(msg)
-    
+    rospy.init_node('cameranode', anonymous=True)
+    pub = rospy.Publisher("gestures", gestures, queue_size = 1)
+    #rospy.spin()
+    r = rospy.Rate(10)
+    msg = gestures()
+
+
     # initialize accumulated weight
     accumWeight = 0.5
 
@@ -135,7 +139,11 @@ if __name__ == "__main__":
     calibrated = False
 
     # keep looping, until interrupted
-    while(True):
+    while not rospy.is_shutdown():
+        msg.fingers = 3
+        pub.publish(msg)
+        print(msg.fingers)
+        r.sleep()
         # get the current frame
         (grabbed, frame) = camera.read()
 
@@ -202,6 +210,7 @@ if __name__ == "__main__":
         # if the user pressed "q", then stop looping
         if keypress == ord("q"):
             break
+
 
 # free up memory
 camera.release()

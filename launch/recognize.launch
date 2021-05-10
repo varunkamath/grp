@@ -1,4 +1,4 @@
 <launch>
-    <node pkg="gesture-recognition-project" type="recognize.py"
+    <node pkg="grp" type="recognize.py"
           name="recognize" output="screen" />
 </launch>

@@ -8,6 +8,11 @@ import imutils
 import numpy as np
 import rospy
 from sklearn.metrics import pairwise
+from genpy import message
+import sys
+import rospy
+from geometry_msgs.msg import Point, Twist
+from controller.msg import gestures
 
 # globals
 bg = None
@@ -101,6 +106,13 @@ def count(thresholded, segmented):
 
 
 if __name__ == "__main__":
+    rospy.init_node('cameranode', anonymous=True)
+    pub = rospy.Publisher("gestures", gestures, queue_size = 1)
+    #rospy.spin()
+    r = rospy.Rate(10)
+    msg = gestures()
+
+
     # initialize accumulated weights
     accumWeight = 0.5
     accumWeight2 = 0.5
@@ -119,7 +131,11 @@ if __name__ == "__main__":
     calibrated2 = False
 
     # action loop
-    while (True):
+    while not rospy.is_shutdown():
+        #msg.fingers = 3
+        #pub.publish(msg)
+        #print(msg.fingers)
+        r.sleep()
         # get current frame
         (grabbed, frame) = camera.read()
 
