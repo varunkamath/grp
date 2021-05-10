@@ -106,7 +106,7 @@ if __name__ == "__main__":
     accumWeight2 = 0.5
 
     # getting video feed
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0, cv2.CAP_V4L)
 
     # defining handboxes
     top, right, bottom, left = 10, 350, 225, 590
@@ -212,7 +212,9 @@ if __name__ == "__main__":
 
         if keypress == ord("q"):
             break
+    camera.release()
+    cv2.destroyAllWindows()
 
 # free memory
-camera.release()
-cv2.destroyAllWindows()
+# camera.release()
+# cv2.destroyAllWindows()
