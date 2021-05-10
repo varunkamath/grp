@@ -1,4 +1,9 @@
 <launch>
     <node pkg="grp" type="recognize.py"
-          name="recognize" output="screen" />
+        name="recognize" output="screen" />
+    <node pkg='grp' type='gesture-controller.py'
+        name="gesture_controller" output="screen" />
+    <node pkg="stage_ros" type="stageros" args="/home/parallels/catkin_ws/src/grp/scripts/maze.world" name="maze_world">
+        <param name="base_watchdog_timeout" value="0" />
+    </node>
 </launch>
