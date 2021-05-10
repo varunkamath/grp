@@ -1,14 +1,14 @@
+#!/usr/bin/env python3
 
 from genpy import message
 import sys
 import rospy
 from geometry_msgs.msg import Point, Twist
 from controller.msg import gestures
-msg = gestures()
-
+#msg = gestures()
 
 def callback(gestures):
-
+    print(gestures.fingers)
 # Define velocity variable
     v = Twist()
 
@@ -39,15 +39,17 @@ def callback(gestures):
     else:
         v.linear.x = 0 
 
-
 # Push velocity to /cmd_vel 
     pub.publish(v)
+    
+
 
 # Initialize subscriptions
 if __name__ == '__main__':
     rospy.init_node('controller', anonymous=True)
-    sub = rospy.Subscriber("gestures", 1000, callback)
+    sub = rospy.Subscriber("gestures", gestures, callback)
     pub = rospy.Publisher("/cmd_vel", Twist, queue_size = 1)
+    print("init")
     rospy.spin()
 
 # We will create this message in the gesture recognition package
