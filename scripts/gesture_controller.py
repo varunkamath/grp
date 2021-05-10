@@ -14,7 +14,8 @@ def callback(gestures):
 
 
 # Steering
-    v.angular.z = -gestures.dir
+    v.angular.z = gestures.dir
+    v.angular.z = -  v.angular.z
  #   if gestures.dir == "s":
   #      v.angular.z = 0
    # elif gestures.dir == "l":

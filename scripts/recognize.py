@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     # action loop
     while not rospy.is_shutdown():
-        msg.fingers = 3
+        #msg.fingers = 3
         pub.publish(msg)
         print(msg.fingers)
         r.sleep()
@@ -194,21 +194,27 @@ if __name__ == "__main__":
                 (fingers, area_y) = count(thresholded, segmented)
                 (fingers2, area_y2) = count(thresholded2, segmented2)
 
-                steer_num = area_y - area_y2
+                
+                steer_num = (area_y - area_y2) 
+                turn_rad = steer_num / 75
                 steer = 'straight'
+                gestures.dir = turn_rad
 
                 if steer_num < -steer_tol:
                     steer = 'left'
+                    #gestures.dir = 'l'
                 elif steer_num > steer_tol:
                     steer = 'right'
+                    #gestures.dir = 'r'
 
                 cv2.putText(clone, str(fingers), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, str(fingers2), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, 'turning ' + str(steer), (15, 375), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+                gestures.fingers = fingers + fingers2
                 # show thresholded images
-                cv2.imshow("Right hand", thresholded)
-                cv2.imshow("Left hand", thresholded2)
+                #cv2.imshow("Right hand", thresholded)
+                #cv2.imshow("Left hand", thresholded2)
 
         # draw hands
         cv2.rectangle(clone, (left, top), (right, bottom), (0, 255, 0), 2)

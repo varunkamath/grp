@@ -1,2 +1,2 @@
 int64 fingers
-string dir
+float64 dir
