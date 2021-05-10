@@ -37,7 +37,7 @@ def segment(image):
 
     # getting foreground
     blur = cv2.GaussianBlur(diff, (5, 5), 0)
-    thresholded = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    thresholded = cv2.threshold(blur, 200, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
     # finding contours of the hand (theoretically)
     cnts, _ = cv2.findContours(thresholded.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -102,7 +102,7 @@ def count(thresholded, segmented):
             count += 1
 
     print(count)
-    return count
+    return count, cY
 
 
 if __name__ == "__main__":
@@ -129,6 +129,9 @@ if __name__ == "__main__":
     num_frames = 0
     calibrated = False
     calibrated2 = False
+
+    # steering tolerance
+    steer_tol = 15
 
     # action loop
     while not rospy.is_shutdown():
@@ -190,15 +193,24 @@ if __name__ == "__main__":
                 cv2.drawContours(clone, [segmented2 + (right2, top2)], -1, (0, 0, 255))
 
                 # count fingers
-                fingers = count(thresholded, segmented)
-                fingers2 = count(thresholded2, segmented2)
+                (fingers, area_y) = count(thresholded, segmented)
+                (fingers2, area_y2) = count(thresholded2, segmented2)
+
+                steer_num = area_y - area_y2
+                steer = 'straight'
+
+                if steer_num < -steer_tol:
+                    steer = 'left'
+                elif steer_num > steer_tol:
+                    steer = 'right'
 
                 cv2.putText(clone, str(fingers), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, str(fingers2), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(clone, 'turning ' + str(steer), (15, 375), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                 # show thresholded images
-                cv2.imshow("Thresholded", thresholded)
-                cv2.imshow("Other hand", thresholded2)
+                cv2.imshow("Right hand", thresholded)
+                cv2.imshow("Left hand", thresholded2)
 
         # draw hands
         cv2.rectangle(clone, (left, top), (right, bottom), (0, 255, 0), 2)
