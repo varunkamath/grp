@@ -12,7 +12,7 @@ from genpy import message
 import sys
 import rospy
 from geometry_msgs.msg import Point, Twist
-from controller.msg import gestures
+from grp.msg import gestures
 import os
 #msg = gestures()
 # global variables

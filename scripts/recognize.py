@@ -6,7 +6,6 @@
 import cv2
 import imutils
 import numpy as np
-import rospy
 from sklearn.metrics import pairwise
 from genpy import message
 import sys

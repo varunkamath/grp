@@ -6,4 +6,5 @@
     <node pkg="stage_ros" type="stageros" args="/home/parallels/catkin_ws/src/grp/scripts/maze.world" name="maze_world">
         <param name="base_watchdog_timeout" value="0" />
     </node>
+    <node pkg="controller" type="driver.py" name="msgcontroller" />
 </launch>
