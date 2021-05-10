@@ -6,7 +6,6 @@
 import cv2
 import imutils
 import numpy as np
-import rospy
 from sklearn.metrics import pairwise
 from genpy import message
 import sys
@@ -19,7 +18,7 @@ bg = None
 
 
 # Finding average background
-def run_avg(image, accumWeight):
+def avg_bg(image, weight):
     global bg
     # initialize the background
     if bg is None:
@@ -27,7 +26,7 @@ def run_avg(image, accumWeight):
         return
 
     # compute weighted average, accumulate it and update the background
-    cv2.accumulateWeighted(image, bg, accumWeight)
+    cv2.accumulateWeighted(image, bg, weight)
 
 
 # Segmenting the hand using Otsu's Binarization + Gaussian filtering
@@ -114,11 +113,11 @@ if __name__ == "__main__":
 
 
     # initialize accumulated weights
-    accumWeight = 0.5
-    accumWeight2 = 0.5
+    weight = 0.5
+    weight2 = 0.5
 
     # getting video feed
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0, cv2.CAP_V4L)
 
     # defining handboxes
     top, right, bottom, left = 10, 350, 225, 590
@@ -135,7 +134,6 @@ if __name__ == "__main__":
 
     # action loop
     while not rospy.is_shutdown():
-        #msg.fingers = 3
         pub.publish(msg)
         print(msg.fingers)
         r.sleep()
@@ -172,8 +170,8 @@ if __name__ == "__main__":
         # to get the background, keep looking till a threshold is reached
         # so that our weighted average model gets calibrated
         if num_frames < 30:
-            run_avg(gray, accumWeight)
-            run_avg(gray2, accumWeight2)
+            avg_bg(gray, weight)
+            avg_bg(gray2, weight2)
             if num_frames == 1:
                 print("[STATUS] please wait! calibrating...")
             elif num_frames == 29:
@@ -234,7 +232,9 @@ if __name__ == "__main__":
 
         if keypress == ord("q"):
             break
+    camera.release()
+    cv2.destroyAllWindows()
 
 # free memory
-camera.release()
-cv2.destroyAllWindows()
+# camera.release()
+# cv2.destroyAllWindows()
