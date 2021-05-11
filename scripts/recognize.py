@@ -102,7 +102,6 @@ def count(thresholded, segmented):
         if ((cY + (cY * 0.25)) > (y + h)) and ((circumference * 0.25) > c.shape[0]):
             count += 1
 
-    #print(count)
     return count, cY
 
 
