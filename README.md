@@ -18,7 +18,7 @@ This project requires:
 
 ## Usage
 With `grp/` and `controller/` in `~/catkin_ws/src`:
-1. Run `./configure.sh` to install OpenCV 4.2.0
+1. Run `./configure.sh` to install dependencies and OpenCV 4.2.0
 2. Run `catkin_make`  in `~/catkin_ws`
 3. Run `source ~/catkin_ws/devel/setup.bash` or `source ~/catkin_ws/devel/setup.zsh`
 4. Run `roslaunch grp recognize.launch`
