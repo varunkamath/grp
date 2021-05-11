@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# Segment, recognize, and count fingers from a video feed
+# Program to segment, recognize, and count fingers on two hands from a video feed
+# Code adapted from: https://github.com/Gogul09/gesture-recognition
+# Relavant methodology explanation: https://gogul09.github.io/software/hand-gesture-recognition-p2
 
 # imports
 import cv2
@@ -99,14 +101,14 @@ def count(thresholded, segmented):
         #     25% of the circumference of the circular ROI
         if ((cY + (cY * 0.25)) > (y + h)) and ((circumference * 0.25) > c.shape[0]):
             count += 1
-            
+
+    #print(count)
     return count, cY
 
 
 if __name__ == "__main__":
     rospy.init_node('cameranode', anonymous=True)
     pub = rospy.Publisher("gestures", gestures, queue_size = 1)
-    #rospy.spin()
     r = rospy.Rate(10)
     msg = gestures()
 
@@ -135,8 +137,12 @@ if __name__ == "__main__":
     while not rospy.is_shutdown():
         #msg.fingers = 3
         pub.publish(msg)
-        print(msg.fingers)
         r.sleep()
+
+        # Note: msg.fingers is read only
+        #print(msg.fingers)
+        #print(msg.dir)
+    
         # get current frame
         (grabbed, frame) = camera.read()
 
@@ -194,7 +200,7 @@ if __name__ == "__main__":
                 (fingers, area_y) = count(thresholded, segmented)
                 (fingers2, area_y2) = count(thresholded2, segmented2)
 
-                
+                # calculate turn radius and direction
                 steer_num = (area_y - area_y2) 
                 turn_rad = steer_num / 75
                 steer = 'straight'
@@ -202,16 +208,16 @@ if __name__ == "__main__":
 
                 if steer_num < -steer_tol:
                     steer = 'left'
-                    #gestures.dir = 'l'
                 elif steer_num > steer_tol:
                     steer = 'right'
-                    #gestures.dir = 'r'
 
                 cv2.putText(clone, str(fingers), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, str(fingers2), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, 'turning ' + str(steer), (15, 375), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+                # set fingers value for gestures message
                 gestures.fingers = fingers + fingers2
+
                 # show thresholded images
                 #cv2.imshow("Right hand", thresholded)
                 #cv2.imshow("Left hand", thresholded2)
