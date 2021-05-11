@@ -18,7 +18,7 @@ This project requires:
 7. Gazebo 11.3
 
 ## Usage
-With `grp/` and `controller/` in `~/catkin_ws/src`:
+Place `grp/`, `controller/`, `turtlebot3`, `turtlebot3_msgs`, and `turtlebot3_simulations` in `~/catkin_ws/src`. Then:
 1. Run `./configure.sh` to install dependencies and OpenCV 4.2.0
 2. Run `catkin_make`  in `~/catkin_ws`
 3. Run `source ~/catkin_ws/devel/setup.bash` or `source ~/catkin_ws/devel/setup.zsh`
