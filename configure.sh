@@ -1,8 +1,10 @@
 # Script to install dependencies for grp
 
+
 # Updating sources
 
 sudo apt-get -y update
+
 
 # Installing OpenCV dependencies
 
@@ -19,12 +21,20 @@ sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswsca
 
 sudo apt-get install -y libtbb-dev libeigen3-dev
 
-# Python
-sudo apt-get install -y python-dev  python-tk  pylint  python-numpy  \
-                        python3-dev python3-tk pylint3 python3-numpy flake8
+
+# Python things
+sudo apt-get install -y python-dev  python-tk  pylint  python-numpy     \
+                        python3-dev python3-tk pylint3 python3-numpy    \
+                        flake8 python3-genpy
+
+python3 -m pip install sklearn
+
+python3 -m pip install imutils
+
 
 # Documentation + getter tools
 sudo apt-get install -y doxygen unzip wget
+
 
 # Installing OpenCV
 
