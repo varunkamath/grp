@@ -27,6 +27,8 @@ Place `grp/`, `controller/`, `turtlebot3`, `turtlebot3_msgs`, and `turtlebot3_si
 6. Allow the camera to calibrate for a few seconds without anything moving in the background before putting your hands up.
 
 ## Controlling the Robot
+#### Note: For best results, establish strong contrast between hands and (unimodal) background 
+
 Steering:
 Moving your hands up and down opposite of eachother within the AOI boxes will result in the steering text at the bottom of the screen to change.  It will feel similar to a steering wheel motion.
 
