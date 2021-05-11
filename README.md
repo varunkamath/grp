@@ -11,9 +11,10 @@ This project implements the convex hull method for gesture recognition in OpenCV
 This project requires:
 1. ROS Noetic
 2. OpenCV 4.2.0
-3. Python 3: `numpy`
-4. Python 3: `sklearn`
-5. Python 3: `imutils`
+3. Python >= 3.6
+4. Python 3: `numpy`
+5. Python 3: `sklearn`
+6. Python 3: `imutils`
 
 ## Usage
 With `grp/` and `controller/` in `~/catkin_ws/src`:
