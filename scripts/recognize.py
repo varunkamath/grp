@@ -179,9 +179,9 @@ if __name__ == "__main__":
             avg_bg(gray, weight)
             avg_bg(gray2, weight2)
             if num_frames == 1:
-                print("[STATUS] please wait! calibrating...")
+                print("[STATUS] Calibrating...")
             elif num_frames == 29:
-                print("[STATUS] calibration successfull...")
+                print("[STATUS] Calibration successful...")
         else:
             # segment hand regions
             hand = segment(gray)
@@ -211,8 +211,8 @@ if __name__ == "__main__":
                 elif steer_num > steer_tol:
                     steer = 'right'
 
-                cv2.putText(clone, str(fingers), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                cv2.putText(clone, str(fingers2), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(clone, str(fingers2), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(clone, str(fingers), (360, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.putText(clone, 'turning ' + str(steer), (15, 375), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                 # set fingers value for gestures message
@@ -231,16 +231,13 @@ if __name__ == "__main__":
 
         # display frame with both hands
         cv2.imshow("Video Feed", clone)
-        # cv2.imshow("Other hand dude", clone2)
 
         # watch for quit signal
         keypress = cv2.waitKey(1) & 0xFF
 
         if keypress == ord("q"):
             break
+    # free memory
     camera.release()
     cv2.destroyAllWindows()
 
-# free memory
-# camera.release()
-# cv2.destroyAllWindows()
