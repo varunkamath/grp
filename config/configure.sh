@@ -36,6 +36,10 @@ python3 -m pip install imutils
 sudo apt-get install -y doxygen unzip wget
 
 
+# Specifying turtlebot model
+echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
+
+
 # Installing OpenCV
 
 wget https://github.com/opencv/opencv/archive/4.2.0.zip
