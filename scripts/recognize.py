@@ -135,7 +135,7 @@ if __name__ == "__main__":
     # action loop
     while not rospy.is_shutdown():
         pub.publish(msg)
-        r.sleep()
+        # r.sleep()
 
         # Note: msg.fingers is read only
         #print(msg.fingers)
