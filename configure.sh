@@ -32,17 +32,10 @@ wget https://github.com/opencv/opencv/archive/4.2.0.zip
 unzip 4.2.0.zip && rm 4.2.0.zip
 mv opencv-4.2.0 OpenCV
 
-
-wget https://github.com/opencv/opencv_contrib/archive/4.2.0.zip
-unzip 4.2.0.zip && rm 4.2.0.zip
-mv opencv_contrib-4.2.0 opencv_contrib
-mv opencv_contrib OpenCV
-
 cd OpenCV && mkdir build && cd build
 
 cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON \
-      -DWITH_XINE=ON -DENABLE_PRECOMPILED_HEADERS=OFF \
-      -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ..
+      -DWITH_XINE=ON -DENABLE_PRECOMPILED_HEADERS=OFF ..
 
 make -j8
 sudo make install
