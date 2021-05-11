@@ -24,3 +24,14 @@ Place `grp/`, `controller/`, `turtlebot3`, `turtlebot3_msgs`, and `turtlebot3_si
 3. Run `catkin_make`  in `~/catkin_ws`
 4. Run `source ~/catkin_ws/devel/setup.bash` or `source ~/catkin_ws/devel/setup.zsh`
 5. Run `roslaunch grp recognize.launch`
+6. Allow the camera to calibrate for a few seconds without anything moving in the background before putting your hands up.
+
+## Controlling the Robot
+Steering:
+Moving your hands up and down opposite of eachother within the AOI boxes will result in the steering text at the bottom of the screen to change.  It will feel similar to a steering wheel motion.
+
+Velocity:
+1. Holding up two fists (should) stop the bot from moving.
+2. Holding up one finger on each hand will put the robot in reverse.
+3. Holding up more than 2 fingers total will incrementally increase your speed.
+4. If you find a way to reach more than 10 fingers, you will unlock super speed! 

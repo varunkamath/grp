@@ -33,7 +33,7 @@ def callback(gestures):
         v.linear.x = 0.5
         #print("less than 10")
     elif fing > 10:
-        v.linear.x = 5
+        v.linear.x = 2
         #print("more than 10")
     else:
         print("finger count error") 
