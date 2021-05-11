@@ -20,6 +20,7 @@ This project requires:
 ## Usage
 Place `grp/`, `controller/`, `turtlebot3`, `turtlebot3_msgs`, and `turtlebot3_simulations` in `~/catkin_ws/src`. Then:
 1. Run `./configure.sh` to install dependencies and OpenCV 4.2.0
-2. Run `catkin_make`  in `~/catkin_ws`
-3. Run `source ~/catkin_ws/devel/setup.bash` or `source ~/catkin_ws/devel/setup.zsh`
-4. Run `roslaunch grp recognize.launch`
+2. Source `bash` again to initialize turtlebot model (run `source ~/.bashrc`)
+3. Run `catkin_make`  in `~/catkin_ws`
+4. Run `source ~/catkin_ws/devel/setup.bash` or `source ~/catkin_ws/devel/setup.zsh`
+5. Run `roslaunch grp recognize.launch`
