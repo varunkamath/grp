@@ -135,11 +135,8 @@ if __name__ == "__main__":
     # action loop
     while not rospy.is_shutdown():
         pub.publish(msg)
+        # If necessary, uncomment this line. May be necessary on some systems (won't work in 3D).
         # r.sleep()
-
-        # Note: msg.fingers is read only
-        #print(msg.fingers)
-        #print(msg.dir)
     
         # get current frame
         (grabbed, frame) = camera.read()
