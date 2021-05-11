@@ -2,7 +2,7 @@
 ### A CSCI 5551 Project
 #### by Luke Friede, Jason Vivit, Varun Kamath
 
-Gesture recognition and robot control project using ROS 2 and OpenCV (maybe Gazebo too lol)
+Gesture recognition and robot control project using ROS 2 and OpenCV (maybe Gazebo too)
 
 ## Files
 This project implements the convex hull method for gesture recognition in OpenCV and uses elementary robot control from `geometry_msg/cmd_vel` in Python 3. Relevant files apart from those provided are `scripts/recognize.py` and `launch/recognize.launch` 
