@@ -25,7 +25,7 @@ sudo apt-get install -y libtbb-dev libeigen3-dev
 # Python things
 sudo apt-get install -y python-dev  python-tk  pylint  python-numpy     \
                         python3-dev python3-tk pylint3 python3-numpy    \
-                        flake8 python3-genpy
+                        flake8 python3-genpy python3-pip
 
 python3 -m pip install sklearn
 
