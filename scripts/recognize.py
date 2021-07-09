@@ -102,7 +102,6 @@ def count(thresholded, segmented):
         if ((cY + (cY * 0.25)) > (y + h)) and ((circumference * 0.25) > c.shape[0]):
             count += 1
 
-    #print(count)
     return count, cY
 
 
@@ -135,7 +134,6 @@ if __name__ == "__main__":
 
     # action loop
     while not rospy.is_shutdown():
-        #msg.fingers = 3
         pub.publish(msg)
         # If necessary, uncomment this line. May be necessary on some systems (won't work in 3D).
         # r.sleep()

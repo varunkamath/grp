@@ -10,9 +10,7 @@ project(grp)
 find_package(catkin REQUIRED COMPONENTS
     std_msgs
     message_generation
-    ##geometry_msgs
     rospy
-    ##sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
